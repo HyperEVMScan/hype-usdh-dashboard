@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HyperEVMScan - Transaction Details</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --page:#f8fafc;
+      --line:#e6ebf1;
+      --line2:#eef2f6;
+      --text:#1f2937;
+      --muted:#667085;
+      --muted2:#98a2b3;
+      --green:#0fb89a;
+      --green-dark:#009f86;
+      --green-soft:#e9fbf6;
+      --blue:#4d90fe;
+      --blue-soft:#ecf4ff;
+      --orange:#d97706;
+      --orange-soft:#fff3e4;
+      --red:#dc2626;
+      --shadow:0 1px 2px rgba(16,24,40,.03);
+      --radius:12px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Inter","Segoe UI",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    body{
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1368px, calc(100vw - 96px));
+      margin:0 auto;
+    }
+
+    .top-strip{
+      height:52px;
+      border-bottom:1px solid var(--line);
+      background:#fff;
+      display:flex;
+      align-items:center;
+    }
+
+    .top-strip .container{
+      display:grid;
+      grid-template-columns:auto minmax(520px, 1fr) auto;
+      align-items:center;
+      gap:18px;
+    }
+
+    .market-meta{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:13px;
+      color:#475467;
+      white-space:nowrap;
+    }
+
+    .market-meta .price strong{
+      color:#0f766e;
+      font-weight:700;
+    }
+
+    .market-meta .red{
+      color:#ef4444;
+      font-weight:600;
+    }
+
+    .market-meta .gas{
+      color:#0f766e;
+      font-weight:500;
+    }
+
+    .top-search{
+      justify-self:end;
+      width:min(620px, 100%);
+      height:36px;
+      border:1px solid #d9e0e8;
+      border-radius:10px;
+      background:#fbfcfd;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:0 14px;
+      color:#667085;
+      font-size:13px;
+      font-weight:500;
+    }
+
+    .top-search .search-icon{
+      font-size:18px;
+      color:#98a2b3;
+    }
+
+    .top-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      justify-self:end;
+    }
+
+    .top-circle{
+      width:36px;
+      height:36px;
+      border:1px solid #d9e0e8;
+      border-radius:10px;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      color:#667085;
+      font-size:15px;
+      flex:0 0 auto;
+      overflow:hidden;
+    }
+
+    .top-circle img{
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    .nav{
+      height:56px;
+      border-bottom:1px solid var(--line);
+      background:#fff;
+      display:flex;
+      align-items:center;
+    }
+
+    .nav .container{
+      display:grid;
+      grid-template-columns:260px 1fr auto;
+      align-items:center;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:220px;
+    }
+
+    .brand-logo{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#001917;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+    }
+
+    .brand-logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .brand-text{
+      line-height:1.05;
+    }
+
+    .brand-name{
+      font-size:19px;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      color:#111827;
+    }
+
+    .brand-name span{
+      color:#10b89a;
+    }
+
+    .brand-sub{
+      margin-top:2px;
+      font-size:10px;
+      font-weight:600;
+      color:#667085;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:30px;
+      font-size:14px;
+      font-weight:500;
+      color:#111827;
+    }
+
+    .nav-links .active{
+      color:#10b89a;
+      font-weight:600;
+    }
+
+    .nav-links .drop::after{
+      content:"⌄";
+      margin-left:6px;
+      font-size:11px;
+      color:#98a2b3;
+      vertical-align:middle;
+    }
+
+    .account{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      font-weight:600;
+      color:#111827;
+      white-space:nowrap;
+      justify-self:end;
+    }
+
+    .main{
+      background:#fff;
+      padding:24px 0 44px;
+    }
+
+    .page-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:0 0 18px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:40px;
+    }
+
+    .page-title-wrap{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .page-title{
+      font-size:18px;
+      font-weight:700;
+      color:#101828;
+      letter-spacing:-0.01em;
+    }
+
+    .page-arrows{
+      display:flex;
+      gap:6px;
+    }
+
+    .arrow-btn{
+      width:26px;
+      height:26px;
+      border-radius:8px;
+      background:#eef2f6;
+      color:#667085;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .quick-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .green-btn{
+      height:34px;
+      padding:0 13px;
+      border-radius:8px;
+      background:#10b89a;
+      color:#fff;
+      font-size:14px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:5px;
+    }
+
+    .green-btn::after{
+      content:"⌄";
+      font-size:10px;
+      opacity:.9;
+    }
+
+    .tabs-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+    }
+
+    .tab{
+      min-width:70px;
+      height:28px;
+      padding:0 14px;
+      border-radius:10px;
+      background:#eef2f6;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .tab.active{
+      background:#10b89a;
+      color:#fff;
+    }
+
+    .api-btn{
+      height:28px;
+      padding:0 12px;
+      border:1px solid #d8e0e8;
+      border-radius:8px;
+      background:#fff;
+      color:#344054;
+      font-size:13px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid #dde4ec;
+      border-radius:14px;
+      box-shadow:var(--shadow);
+    }
+
+    .action-card{
+      padding:18px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:10px;
+    }
+
+    .action-icon{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      background:#001917;
+      flex:0 0 auto;
+    }
+
+    .action-icon img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .action-icon::after{
+      content:"↗";
+      position:absolute;
+      right:-2px;
+      bottom:-2px;
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      background:#10b89a;
+      color:#fff;
+      font-size:10px;
+      font-weight:700;
+      display:grid;
+      place-items:center;
+      border:2px solid #fff;
+    }
+
+    .action-content{
+      min-width:0;
+    }
+
+    .action-title{
+      font-size:12px;
+      font-weight:700;
+      color:#111827;
+      margin-bottom:4px;
+    }
+
+    .action-desc{
+      font-size:14px;
+      color:#475467;
+      font-weight:500;
+      line-height:1.45;
+      word-break:break-word;
+    }
+
+    .green-link{
+      color:#009f86;
+      font-weight:600;
+    }
+
+    .blue-link{
+      color:#2c7be5;
+      font-weight:600;
+    }
+
+    .orange-link{
+      color:#d97706;
+      font-weight:600;
+    }
+
+    .red-link{
+      color:#dc2626;
+      font-weight:600;
+    }
+
+    .token-inline{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      vertical-align:middle;
+    }
+
+    .token-icon{
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#001917;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+    }
+
+    .token-icon.sm{
+      width:14px;
+      height:14px;
+    }
+
+    .token-icon.md{
+      width:18px;
+      height:18px;
+    }
+
+    .token-icon img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .details-card{
+      padding:0 16px 10px;
+    }
+
+    .detail-row{
+      display:grid;
+      grid-template-columns:250px 1fr;
+      gap:18px;
+      align-items:center;
+      min-height:46px;
+      border-bottom:1px solid var(--line2);
+    }
+
+    .detail-row:last-child{
+      border-bottom:0;
+    }
+
+    .detail-left{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      color:#667085;
+      font-weight:500;
+    }
+
+    .qmark{
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      border:1px solid #b8c2cc;
+      color:#667085;
+      font-size:11px;
+      font-weight:700;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+
+    .detail-right{
+      font-size:14px;
+      color:#101828;
+      font-weight:500;
+      line-height:1.5;
+      word-break:break-word;
+      padding:10px 0;
+    }
+
+    .copy{
+      color:#98a2b3;
+      margin-left:6px;
+      font-size:13px;
+      vertical-align:middle;
+    }
+
+    .status-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:8px;
+      font-size:13px;
+      font-weight:600;
+      border:1px solid transparent;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .status-badge.success{
+      background:#e9fbf6;
+      color:#0f9f87;
+      border-color:#c9f1e8;
+    }
+
+    .status-badge.orange{
+      background:#fff4e6;
+      color:#c96a06;
+      border-color:#ffd9b0;
+    }
+
+    .status-badge.blue{
+      background:#eef5ff;
+      color:#3b82f6;
+      border-color:#d9e9ff;
+    }
+
+    .status-badge.red{
+      background:#fff1f1;
+      color:#dc2626;
+      border-color:#ffd0d0;
+    }
+
+    .tiny-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:8px;
+      border:1px solid #d9e0e8;
+      background:#fff;
+      font-size:12px;
+      font-weight:600;
+      color:#111827;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .time-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 11px;
+      border-radius:10px;
+      border:1px solid #d9e0e8;
+      background:#fff;
+      font-size:13px;
+      font-weight:500;
+      color:#101828;
+      line-height:1;
+    }
+
+    .blank-space{
+      height:72px;
+    }
+
+    .transfer-tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    .mini-tab{
+      height:30px;
+      padding:0 12px;
+      border-radius:8px;
+      background:#eef2f6;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .mini-tab.active{
+      background:#10b89a;
+      color:#fff;
+    }
+
+    .transfer-line{
+      font-size:13px;
+      line-height:1.8;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      flex-wrap:wrap;
+      font-weight:500;
+    }
+
+    .panel-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      gap:16px;
+      margin-top:14px;
+    }
+
+    .panel{
+      border:1px solid #dde4ec;
+      border-radius:14px;
+      background:#fff;
+      padding:16px 16px 14px;
+    }
+
+    .panel-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      font-weight:700;
+      color:#111827;
+      margin-bottom:14px;
+      line-height:1.2;
+      flex-wrap:wrap;
+    }
+
+    .panel-title .status-badge{
+      font-size:12px;
+      padding:5px 10px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:230px 1fr;
+      row-gap:12px;
+      column-gap:12px;
+      align-items:start;
+    }
+
+    .info-key{
+      font-size:13px;
+      color:#475467;
+      font-weight:500;
+      line-height:1.5;
+    }
+
+    .info-val{
+      font-size:13px;
+      color:#101828;
+      font-weight:600;
+      line-height:1.5;
+      word-break:break-word;
+    }
+
+    .progress-block{
+      margin-top:14px;
+    }
+
+    .progress-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-size:13px;
+      font-weight:600;
+      color:#111827;
+      margin-bottom:8px;
+    }
+
+    .progress-track{
+      height:12px;
+      border-radius:999px;
+      background:#edf2f7;
+      overflow:hidden;
+      border:1px solid #e2e8f0;
+    }
+
+    .progress-fill{
+      width:83.92%;
+      height:100%;
+      background:linear-gradient(90deg, #3b82f6 0%, #10b89a 100%);
+      border-radius:999px;
+    }
+
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .summary-card{
+      border:1px solid #dde4ec;
+      border-radius:12px;
+      background:#fff;
+      padding:12px 13px;
+      min-height:82px;
+    }
+
+    .summary-label{
+      font-size:11px;
+      color:#667085;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+      margin-bottom:8px;
+      line-height:1.35;
+    }
+
+    .summary-value{
+      font-size:14px;
+      color:#111827;
+      font-weight:700;
+      line-height:1.4;
+      word-break:break-word;
+    }
+
+    .table-wrap{
+      margin-top:14px;
+      border:1px solid #dde4ec;
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .table-head{
+      height:48px;
+      padding:0 16px;
+      border-bottom:1px solid #e8edf3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-size:14px;
+      font-weight:700;
+      color:#111827;
+    }
+
+    .table-head-left{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th,td{
+      border-bottom:1px solid #edf2f7;
+      padding:12px 16px;
+      text-align:left;
+      vertical-align:middle;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    th{
+      background:#fbfcfd;
+      color:#667085;
+      font-weight:600;
+    }
+
+    tbody tr:last-child td{
+      border-bottom:0;
+    }
+
+    .notice-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .notice{
+      border-radius:12px;
+      padding:13px 14px;
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:13px;
+      font-weight:600;
+      line-height:1.55;
+      border:1px solid transparent;
+    }
+
+    .notice.green{
+      background:#ecfdf8;
+      color:#0f766e;
+      border-color:#c7f3e7;
+    }
+
+    .notice.blue{
+      background:#eff6ff;
+      color:#1d4ed8;
+      border-color:#dbeafe;
+    }
+
+    .notice.orange{
+      background:#fff7ed;
+      color:#c2410c;
+      border-color:#fed7aa;
+    }
+
+    .notice.red{
+      background:#fef2f2;
+      color:#b42318;
+      border-color:#fecaca;
+    }
+
+    @media (max-width: 1300px){
+      .container{
+        width:calc(100vw - 64px);
+      }
+
+      .top-strip .container{
+        grid-template-columns:auto minmax(360px, 1fr) auto;
+      }
+
+      .nav .container{
+        grid-template-columns:230px 1fr auto;
+      }
+
+      .nav-links{
+        gap:22px;
+      }
+    }
+
+    @media (max-width: 1100px){
+      .container{
+        width:calc(100vw - 24px);
+      }
+
+      .panel-grid{
+        grid-template-columns:1fr;
+      }
+
+      .summary-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .notice-grid{
+        grid-template-columns:1fr;
+      }
+
+      .info-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .nav{
+        height:auto;
+        padding:10px 0;
+      }
+
+      .nav .container{
+        display:flex;
+        flex-wrap:wrap;
+      }
+
+      .nav-links{
+        flex-wrap:wrap;
+        gap:16px;
+      }
+
+      .top-strip{
+        height:auto;
+        padding:8px 0;
+      }
+
+      .top-strip .container{
+        display:flex;
+        flex-wrap:wrap;
+      }
+
+      .top-search{
+        width:100%;
+        max-width:none;
+        margin-left:0;
+      }
+
+      .summary-grid{
+        grid-template-columns:1fr;
+      }
+
+      .detail-row{
+        grid-template-columns:1fr;
+        gap:4px;
+        padding:10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-strip">
+    <div class="container">
+      <div class="market-meta">
+        <div class="price">HYPE Price: <strong>$60.53</strong> <span class="red">(-1.81%)</span></div>
+        <div>⛽ <span class="gas">Gas: 0.186 Gwei</span></div>
+      </div>
+
+      <div class="top-search">
+        <span class="search-icon">🔍</span>
+        <span>Search by Address / Txn Hash / Block / Token</span>
+      </div>
+
+      <div class="top-actions">
+        <div class="top-circle">↗</div>
+        <div class="top-circle">⚙</div>
+        <div class="top-circle">☀</div>
+        <div class="top-circle">
+          <img src="hyperliquid_icon.png" alt="Hyperliquid">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="container">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="hyperliquid_icon.png" alt="Hyperliquid">
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">HyperEVM<span>Scan</span></div>
+          <div class="brand-sub">A Scan Original</div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <span>Home</span>
+        <span class="active drop">Blockchain</span>
+        <span class="drop">Tokens</span>
+        <span class="drop">NFTs</span>
+        <span class="drop">Resources</span>
+        <span class="drop">Developers</span>
+        <span class="drop">More</span>
+      </div>
+
+      <div class="account">◉ LGM1831 ⌄</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="container">
+
+      <div class="page-head">
+        <div class="page-title-wrap">
+          <div class="page-title">Transaction Details</div>
+          <div class="page-arrows">
+            <div class="arrow-btn">‹</div>
+            <div class="arrow-btn">›</div>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <div class="green-btn">Buy</div>
+          <div class="green-btn">Prediction</div>
+          <div class="green-btn">Play</div>
+          <div class="green-btn">Gaming</div>
+        </div>
+      </div>
+
+      <div class="tabs-row">
+        <div class="tabs">
+          <div class="tab active">Overview</div>
+          <div class="tab">Logs (1)</div>
+        </div>
+
+        <div class="api-btn">&lt; / &gt; API</div>
+      </div>
+
+      <div class="card action-card">
+        <div class="action-icon">
+          <img src="hyperliquid_icon.png" alt="Hyperliquid">
+        </div>
+
+        <div class="action-content">
+          <div class="action-title">TRANSACTION ACTION</div>
+          <div class="action-desc">
+            Unstaking Pending
+            <span class="token-inline">
+              <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+              <strong>21,573.27501 HYPE</strong>
+            </span>
+            from <span class="green-link">HyperEVM / Hyperliquid Processing Queue</span>
+            to <span class="green-link">0x2B0d1d6420ecef98282147b0ED70813aFCff382A</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card details-card">
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Transaction Hash:</div>
+          <div class="detail-right">
+            0x789fb9726f8bab35a4c9e207b85f41d6c3a7f09e12bd6a4f318d57441d3fcbb73d
+            <span class="copy">⧉</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Status:</div>
+          <div class="detail-right">
+            <span class="status-badge orange">● Unstaking Pending</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Block:</div>
+          <div class="detail-right">
+            <span class="green-link" data-current-block-plain>37713423</span>
+            <span class="tiny-pill">Current Processing Block</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Timestamp:</div>
+          <div class="detail-right">
+            <span class="time-pill">Unstaking Queued | ◷ Jun-15-2026 17:00:00 UTC+9 ⌄</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Sponsored:</div>
+          <div class="detail-right">
+            <div class="blank-space"></div>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>From:</div>
+          <div class="detail-right">
+            <span class="token-inline">
+              <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+              <span class="green-link">HyperEVM / Hyperliquid Withdrawal Processing Queue</span>
+            </span>
+            <span class="copy">⧉</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Interacted With (To):</div>
+          <div class="detail-right">
+            <span class="green-link">0x61dd6DaC8b0d9deFD28E06b1A34E36006BE511dF</span>
+            <span class="copy">⧉</span>
+            <span class="green-link">●</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>ERC-20 Tokens Transferred:</div>
+          <div class="detail-right">
+            <div class="transfer-tabs">
+              <div class="mini-tab active">All Transfers</div>
+              <div class="mini-tab">Net Transfers</div>
+            </div>
+
+            <div class="transfer-line">
+              <span style="color:#98a2b3;">▸</span>
+              <strong>From</strong>
+              <span class="token-inline">
+                <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                <span class="green-link">Hyperliquid Processing Queue</span>
+              </span>
+              <span class="copy">⧉</span>
+              <strong>To</strong>
+              <span class="green-link">0x2B0d1d64...aFCff382A</span>
+              <span class="copy">⧉</span>
+              <strong>For</strong>
+              <span class="token-inline">
+                <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                <strong>21,573.27501</strong>
+              </span>
+              <span>ERC-20: HYPE (HYPE)</span>
+              <span class="copy">⧉</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-left"><span class="qmark">?</span>Value:</div>
+          <div class="detail-right">
+            <span class="token-inline">
+              <span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+              <strong>21,573.27501 HYPE</strong>
+            </span>
+            <span style="color:#667085; font-weight:500;">(Unstaking Pending)</span>
+          </div>
+        </div>
+
+        <div class="panel-grid">
+
+          <div class="panel">
+            <div class="panel-title">
+              <span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+              <span>HYPE BALANCE / USDH PROCESSING STATUS</span>
+              <span class="status-badge orange">UNSTAKING PENDING</span>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-key">Current HYPE Price:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  60.53 USD
+                </span>
+              </div>
+
+              <div class="info-key">Current Block:</div>
+              <div class="info-val" data-current-block>37,713,423</div>
+
+              <div class="info-key">Expected Withdrawal Block:</div>
+              <div class="info-val">37,891,832</div>
+
+              <div class="info-key">Remaining Block Distance:</div>
+              <div class="info-val" data-remaining-blocks>178,409 Blocks</div>
+
+              <div class="info-key">Unstaking Pending Amount:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  21,573.27501 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Unstaking Pending Value:</div>
+              <div class="info-val">1,305,830.34 USD</div>
+
+              <div class="info-key">Latest Deposit Reflected:</div>
+              <div class="info-val green-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  63.2631 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Latest Deposit Value:</div>
+              <div class="info-val green-link">3,829.32 USD</div>
+
+              <div class="info-key">Additional Deposit Required:</div>
+              <div class="info-val red-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  58.6234 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Required Deposit Value:</div>
+              <div class="info-val red-link">3,548.47 USD</div>
+
+              <div class="info-key">Required Action Deadline:</div>
+              <div class="info-val">
+                <span class="status-badge red">JUN-15-2026 09:00 UTC+9</span>
+              </div>
+
+              <div class="info-key">Required Action Status:</div>
+              <div class="info-val">
+                <span class="status-badge red">ACTION REQUIRED / ADDITIONAL HYPE NEEDED</span>
+              </div>
+
+              <div class="info-key">Base HYPE Reference:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  14,246.64484 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Existing HYPE Hedging Reward:</div>
+              <div class="info-val blue-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  3,256.23 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Reward Classification:</div>
+              <div class="info-val">
+                <span class="status-badge blue">PRINCIPAL / NOT GUARANTEE</span>
+              </div>
+
+              <div class="info-key">Updated Total HYPE Reference:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  17,502.87484 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Base HYPE Value Reference:</div>
+              <div class="info-val">862,349.41 USD</div>
+
+              <div class="info-key">Existing Hedging Reward Value:</div>
+              <div class="info-val">197,099.60 USD</div>
+
+              <div class="info-key">Updated Total HYPE Value:</div>
+              <div class="info-val">1,059,449.01 USD</div>
+
+              <div class="info-key">Previous Guarantee HYPE In Use:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  351.2437 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Previous Guarantee Value:</div>
+              <div class="info-val">21,260.78 USD</div>
+
+              <div class="info-key">Guarantee After 9.21 Deposit:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  360.4537 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Guarantee After 9.21 Value:</div>
+              <div class="info-val">21,818.26 USD</div>
+
+              <div class="info-key">Current Guarantee After 63.2631 Deposit:</div>
+              <div class="info-val green-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  423.7168 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Current Guarantee Value:</div>
+              <div class="info-val green-link">25,647.58 USD</div>
+
+              <div class="info-key">Projected Guarantee After Required Deposit:</div>
+              <div class="info-val red-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  482.3402 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Projected Guarantee Value:</div>
+              <div class="info-val red-link">29,196.05 USD</div>
+
+              <div class="info-key">USDH 10% Progress:</div>
+              <div class="info-val">
+                <span class="status-badge blue">83.92% IN PROGRESS</span>
+              </div>
+
+              <div class="info-key">Withdrawal Schedule:</div>
+              <div class="info-val">
+                <span class="status-badge orange">JUN-15-2026 17:00 UTC+9</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">
+              <span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+              <span>Network / Route / Conversion Summary</span>
+              <span class="status-badge blue">ACTIVE</span>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-key">Source Network:</div>
+              <div class="info-val">Solana</div>
+
+              <div class="info-key">Destination Network:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  HyperEVM / Hyperliquid
+                </span>
+              </div>
+
+              <div class="info-key">Recent Conversion Route:</div>
+              <div class="info-val">Solana HYPE -> Hyper Network HYPE</div>
+
+              <div class="info-key">Existing HYPE Process:</div>
+              <div class="info-val">wHYPE -> Standard Cashable HYPE</div>
+
+              <div class="info-key">Partial Liquidity Route:</div>
+              <div class="info-val">HYPE -> USDH -> USDC</div>
+
+              <div class="info-key">Unstaking Pending Route:</div>
+              <div class="info-val">Hyperliquid Queue -> Cashable HYPE</div>
+
+              <div class="info-key">Unstaking Pending Amount:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  21,573.27501 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">USDH Conversion Base Amount:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  10,564.93484 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">USDH Conversion Ratio:</div>
+              <div class="info-val">10%</div>
+
+              <div class="info-key">HYPE Amount Selected For USDH:</div>
+              <div class="info-val">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  1,056.493484 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">USDH Selected HYPE Value:</div>
+              <div class="info-val">63,949.55 USD</div>
+
+              <div class="info-key">Conversion Route:</div>
+              <div class="info-val">HYPE -> USDH</div>
+
+              <div class="info-key">Final Route:</div>
+              <div class="info-val">USDH -> USDC</div>
+
+              <div class="info-key">Block Target:</div>
+              <div class="info-val" data-block-target>37,713,423 -> 37,891,832</div>
+
+              <div class="info-key">Latest Deposit Reflected:</div>
+              <div class="info-val green-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  63.2631 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Required Deposit:</div>
+              <div class="info-val red-link">
+                <span class="token-inline">
+                  <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                  58.6234 HYPE
+                </span>
+              </div>
+
+              <div class="info-key">Action Deadline:</div>
+              <div class="info-val red-link">Jun-15-2026 09:00 UTC+9</div>
+            </div>
+
+            <div class="progress-block">
+              <div class="progress-head">
+                <span>USDH 10% Conversion Progress</span>
+                <span class="blue-link">83.92%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="summary-label">HYPE Price</div>
+            <div class="summary-value">
+              <span class="token-inline">
+                <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                $60.53
+              </span>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Current Block</div>
+            <div class="summary-value" data-current-block>37,713,423</div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Withdrawal Block</div>
+            <div class="summary-value">37,891,832</div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Unstaking Pending</div>
+            <div class="summary-value">
+              <span class="token-inline">
+                <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                21,573.27501 HYPE
+              </span>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Remaining Blocks</div>
+            <div class="summary-value" data-remaining-blocks-short>178,409</div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Latest Deposit</div>
+            <div class="summary-value green-link">
+              <span class="token-inline">
+                <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                63.2631 HYPE
+              </span>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Additional Required</div>
+            <div class="summary-value red-link">
+              <span class="token-inline">
+                <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+                58.6234 HYPE
+              </span>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">USDH 10% Progress</div>
+            <div class="summary-value blue-link">83.92%</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head">
+            <div class="table-head-left">
+              <span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+              <span>Withdrawal / Guarantee / Processing Items</span>
+            </div>
+            <span class="status-badge orange">11 Items</span>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Amount</th>
+                <th>From</th>
+                <th>To / Purpose</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>21,573.27501 HYPE</td>
+                <td>Hyperliquid Processing Queue</td>
+                <td>Unstaking Pending / Cashable HYPE</td>
+                <td><span class="status-badge orange">UNSTAKING PENDING</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>36 HYPE</td>
+                <td>Previously Reflected Deposit</td>
+                <td>Guarantee Use</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>108 HYPE</td>
+                <td>Previous Processing Amount</td>
+                <td>Processing Use</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>62.74 HYPE</td>
+                <td>Additional Reflected Amount</td>
+                <td>Guarantee Use</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>17.971 HYPE</td>
+                <td>Additional Guarantee Amount</td>
+                <td>Guarantee Use</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>50.7941 HYPE</td>
+                <td>Final Added Guarantee</td>
+                <td>Guarantee Use</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>58.8686 HYPE</td>
+                <td>New Guarantee Deposit</td>
+                <td>Guarantee Reflected</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>16.87 HYPE</td>
+                <td>Additional Deposit</td>
+                <td>Guarantee Reflected</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td>9.21 HYPE</td>
+                <td>Additional Reflected Deposit</td>
+                <td>Guarantee / Processing</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td class="green-link">63.2631 HYPE</td>
+                <td>Latest Reflected Deposit</td>
+                <td>Reflected Guarantee Deposit</td>
+                <td><span class="status-badge success">REFLECTED</span></td>
+              </tr>
+              <tr>
+                <td><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HYPE</span></td>
+                <td class="red-link">58.6234 HYPE</td>
+                <td>Additional Required Deposit</td>
+                <td>Required by Jun-15-2026 09:00 UTC+9</td>
+                <td><span class="status-badge red">ACTION REQUIRED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="notice-grid">
+          <div class="notice orange">
+            <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+            <span>21,573.27501 HYPE is currently marked as unstaking pending in the Hyperliquid / HyperEVM processing queue.</span>
+          </div>
+
+          <div class="notice red">
+            <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+            <span>Additional 58.6234 HYPE is required by Jun-15-2026 09:00 UTC+9.</span>
+          </div>
+
+          <div class="notice blue">
+            <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+            <span>USDH 10% conversion process remains active and is currently marked at 83.92%.</span>
+          </div>
+
+          <div class="notice green">
+            <span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>
+            <span>
+              Withdrawal block has been updated to 37,891,832.
+              Current block is <span data-current-block>37,713,423</span>,
+              with <span data-remaining-blocks>178,409 Blocks</span> remaining.
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const HYPEREVM_RPC_URL = "https://rpc.hyperliquid.xyz/evm";
+    const WITHDRAWAL_BLOCK = 37891832;
+    const FALLBACK_BLOCK = 37713423;
+
+    function formatNumber(value) {
+      return Number(value).toLocaleString("en-US");
+    }
+
+    function updateBlockDisplay(latestBlock) {
+      const remainingBlocks = Math.max(WITHDRAWAL_BLOCK - latestBlock, 0);
+
+      document.querySelectorAll("[data-current-block]").forEach((el) => {
+        el.textContent = formatNumber(latestBlock);
+      });
+
+      document.querySelectorAll("[data-current-block-plain]").forEach((el) => {
+        el.textContent = String(latestBlock);
+      });
+
+      document.querySelectorAll("[data-remaining-blocks]").forEach((el) => {
+        el.textContent = formatNumber(remainingBlocks) + " Blocks";
+      });
+
+      document.querySelectorAll("[data-remaining-blocks-short]").forEach((el) => {
+        el.textContent = formatNumber(remainingBlocks);
+      });
+
+      document.querySelectorAll("[data-block-target]").forEach((el) => {
+        el.textContent = formatNumber(latestBlock) + " -> " + formatNumber(WITHDRAWAL_BLOCK);
+      });
+    }
+
+    async function fetchLatestHyperEvmBlock() {
+      try {
+        const response = await fetch(HYPEREVM_RPC_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            jsonrpc: "2.0",
+            id: Date.now(),
+            method: "eth_blockNumber",
+            params: []
+          })
+        });
+
+        const data = await response.json();
+
+        if (!data || !data.result) {
+          throw new Error("No eth_blockNumber result returned");
+        }
+
+        const latestBlock = parseInt(data.result, 16);
+
+        if (!Number.isFinite(latestBlock) || latestBlock <= 0) {
+          throw new Error("Invalid block number");
+        }
+
+        updateBlockDisplay(latestBlock);
+      } catch (error) {
+        console.warn("HyperEVM latest block fetch failed. Using fallback block.", error);
+        updateBlockDisplay(FALLBACK_BLOCK);
+      }
+    }
+
+    updateBlockDisplay(FALLBACK_BLOCK);
+    fetchLatestHyperEvmBlock();
+    setInterval(fetchLatestHyperEvmBlock, 5000);
+  </script>
+
+</body>
+</html>
