@@ -115,12 +115,13 @@
         <div>
           <div class="action-title">TRANSACTION ACTION</div>
           <div class="action-desc">
-            Unstaking Pending
+            Round withdrawal remains active as the selected withdrawal route.
             <span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span><strong>21,123.80271 HYPE</strong></span>
-            and Updated Deposit Records
-            <span class="green-link">updated from provided records</span>
-            from <span class="green-link">HyperEVM / Hyperliquid Processing Queue</span>
-            to <span class="green-link">0x2B0d1d6420ecef98282147b0ED70813aFCff382A</span>
+            is currently routed through <span class="green-link">HyperEVM / Hyperliquid Processing Queue</span>.
+            Separate deposit refund recovery of
+            <span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span><strong>423.7168 HYPE</strong></span>
+            is scheduled for <span class="green-link">JUL-12-2026 21:54 UTC+9</span>
+            to <span class="green-link">0x2B0d1d6420ecef98282147b0ED70813aFCff382A</span>.
           </div>
         </div>
       </div>
@@ -134,9 +135,9 @@
         <div class="detail-row">
           <div class="detail-left"><span class="qmark">?</span>Status:</div>
           <div class="detail-right">
-            <span class="status-badge success">● Withdrawal Active</span>
-            <span class="status-badge success">DEPOSIT / WITHDRAWAL RECORDS UPDATED</span>
-            <span class="status-badge blue">ROUNDS SCHEDULED</span>
+            <span class="status-badge success">● Round Withdrawal Active</span>
+            <span class="status-badge success">DEPOSIT REFUND SCHEDULED</span>
+            <span class="status-badge blue">ROUNDS IN PROGRESS</span>
           </div>
         </div>
 
@@ -147,7 +148,7 @@
 
         <div class="detail-row">
           <div class="detail-left"><span class="qmark">?</span>Timestamp:</div>
-          <div class="detail-right"><span class="time-pill">Rounds Scheduled | ◷ Jul-03-2026 22:00:00 UTC+9 ⌄</span></div>
+          <div class="detail-right"><span class="time-pill">Rounds Active | ◷ Jul-03-2026 22:00:00 UTC+9 ⌄</span></div>
         </div>
 
         <div class="detail-row">
@@ -158,7 +159,7 @@
         <div class="detail-row">
           <div class="detail-left"><span class="qmark">?</span>From:</div>
           <div class="detail-right">
-            <span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span><span class="green-link">HyperEVM / Hyperliquid Withdrawal Processing Queue</span></span>
+            <span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span><span class="green-link">HyperEVM / Hyperliquid Round Processing Queue</span></span>
             <span class="copy">⧉</span>
           </div>
         </div>
@@ -185,7 +186,7 @@
             </div>
             <div class="transfer-line">
               <span style="color:#98a2b3;">▸</span><strong>Deposit Records</strong>
-              <span class="green-link">updated from provided deposit / withdrawal table</span>
+              <span class="green-link">round withdrawal active / deposit refund recovery scheduled</span>
               <span class="copy">⧉</span>
             </div>
           </div>
@@ -197,7 +198,7 @@
             <span class="token-inline"><span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span><strong>21,123.80271 HYPE</strong></span>
             <span style="color:#667085;font-weight:500;">(Unstaking Pending)</span>
             <span style="margin-left:8px;"></span>
-            <span class="green-link">Deposit records updated</span>
+            <span class="green-link">Deposit refund recovery scheduled: 423.7168 HYPE</span>
           </div>
         </div>
 
@@ -205,9 +206,9 @@
           <div class="panel">
             <div class="panel-title">
               <span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span>
-              <span>HYPE BALANCE / WITHDRAWAL STATUS</span>
-              <span class="status-badge success">DEPOSIT / WITHDRAWAL RECORDS UPDATED</span>
-              <span class="status-badge blue">ROUNDS SCHEDULED</span>
+              <span>HYPE BALANCE / ROUND WITHDRAWAL STATUS</span>
+              <span class="status-badge success">ROUND WITHDRAWAL ACTIVE</span>
+              <span class="status-badge blue">DEPOSIT REFUND SCHEDULED</span>
             </div>
             <div class="info-grid">
               <div class="info-key">Current HYPE Price:</div>
@@ -215,12 +216,6 @@
 
               <div class="info-key">Current Block:</div>
               <div class="info-val" data-current-block>37,713,423</div>
-
-              <div class="info-key">Expected Withdrawal Block:</div>
-              <div class="info-val">39,784,917</div>
-
-              <div class="info-key">Remaining Block Distance:</div>
-              <div class="info-val" data-remaining-blocks>2,071,494 Blocks</div>
 
               <div class="info-key">Unstaking Pending Amount:</div>
               <div class="info-val"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>21,123.80271 HYPE</span></div>
@@ -243,13 +238,13 @@
               <div class="info-val"><span class="status-badge success">CLEARED / NO ACTION REQUIRED</span></div>
 
               <div class="info-key">Withdrawal Status:</div>
-              <div class="info-val"><span class="status-badge success">ACTIVE / RECORDS UPDATED</span></div>
+              <div class="info-val"><span class="status-badge success">ACTIVE / ROUND ROUTE SELECTED</span></div>
 
               <div class="info-key">Round Start Time:</div>
               <div class="info-val"><span class="status-badge blue">JUL-03-2026 22:00 UTC+9</span></div>
 
               <div class="info-key">Round Status:</div>
-              <div class="info-val"><span class="status-badge blue">SCHEDULED / STARTS FROM 0</span></div>
+              <div class="info-val"><span class="status-badge blue">ACTIVE / IN PROGRESS</span></div>
 
               <div class="info-key">HYPE Fulfillment Status:</div>
               <div class="info-val green-link">
@@ -279,11 +274,14 @@
               <div class="info-key">Updated Total HYPE Value:</div>
               <div class="info-val">1,234,827.82 USD</div>
 
-              <div class="info-key">USDH 10% Progress:</div>
-              <div class="info-val"><span class="status-badge blue">91.72% IN PROGRESS</span></div>
+              <div class="info-key">Deposit Refund Recovery:</div>
+              <div class="info-val green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span></div>
 
-              <div class="info-key">Withdrawal Schedule:</div>
-              <div class="info-val"><span class="status-badge blue">JUL-07-2026 09:00 UTC+9</span></div>
+              <div class="info-key">Deposit Refund Value:</div>
+              <div class="info-val green-link">29,893.22 USD</div>
+
+              <div class="info-key">Expected Deposit Refund Date:</div>
+              <div class="info-val"><span class="status-badge success">JUL-12-2026 21:54 UTC+9</span></div>
             </div>
           </div>
 
@@ -291,7 +289,7 @@
             <div class="panel-title">
               <span class="token-icon md"><img src="hyperliquid_icon.png" alt="HYPE"></span>
               <span>Network / Route / Status Summary</span>
-              <span class="status-badge success">RECORDS UPDATED</span>
+              <span class="status-badge success">ROUND ROUTE SELECTED</span>
             </div>
             <div class="info-grid">
               <div class="info-key">Source Network:</div>
@@ -300,25 +298,17 @@
               <div class="info-key">Destination Network:</div>
               <div class="info-val"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>HyperEVM / Hyperliquid</span></div>
 
-              <div class="info-key">Recent Conversion Route:</div>
-              <div class="info-val">Solana HYPE -> Hyper Network HYPE</div>
+              <div class="info-key">Selected Withdrawal Route:</div>
+              <div class="info-val green-link">Round withdrawal route</div>
 
               <div class="info-key">Existing HYPE Process:</div>
               <div class="info-val">wHYPE -> Standard Cashable HYPE</div>
-
-              <div class="info-key">Partial Liquidity Route:</div>
-              <div class="info-val">HYPE -> USDH -> USDC</div>
 
               <div class="info-key">Unstaking Pending Route:</div>
               <div class="info-val">Hyperliquid Queue -> Cashable HYPE</div>
 
               <div class="info-key">Unstaking Pending Amount:</div>
               <div class="info-val"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>21,123.80271 HYPE</span></div>
-<div class="info-key">Additional Required Amount:</div>
-              <div class="info-val green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>0 HYPE</span></div>
-
-              <div class="info-key">Additional Required Value:</div>
-              <div class="info-val green-link">0.00 USD</div>
 
               <div class="info-key">Round Start Time:</div>
               <div class="info-val blue-link">Jul-03-2026 22:00:00 UTC+9</div>
@@ -326,37 +316,23 @@
               <div class="info-key">Round Start Value:</div>
               <div class="info-val blue-link">0 rounds</div>
 
-              <div class="info-key">USDH Conversion Base Amount:</div>
-              <div class="info-val"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>10,564.93484 HYPE</span></div>
+              <div class="info-key">Required Rounds:</div>
+              <div class="info-val blue-link">3,900,000 rounds</div>
 
-              <div class="info-key">USDH Conversion Ratio:</div>
-              <div class="info-val">10%</div>
+              <div class="info-key">Estimated Rounds Completion:</div>
+              <div class="info-val blue-link">JUL-06-2026 08:30 UTC+9</div>
 
-              <div class="info-key">HYPE Amount Selected For USDH:</div>
-              <div class="info-val"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>1,056.493484 HYPE</span></div>
+              <div class="info-key">Deposit Refund Recovery:</div>
+              <div class="info-val green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span></div>
 
-              <div class="info-key">USDH Selected HYPE Value:</div>
-              <div class="info-val">74,535.62 USD</div>
+              <div class="info-key">Deposit Refund Value:</div>
+              <div class="info-val green-link">29,893.22 USD</div>
 
-              <div class="info-key">Conversion Route:</div>
-              <div class="info-val">HYPE -> USDH</div>
-
-              <div class="info-key">Final Route:</div>
-              <div class="info-val">USDH -> USDC</div>
-
-              <div class="info-key">Block Target:</div>
-              <div class="info-val" data-block-target>37,713,423 -> 39,784,917</div>
+              <div class="info-key">Expected Deposit Refund Date:</div>
+              <div class="info-val"><span class="status-badge success">JUL-12-2026 21:54 UTC+9</span></div>
 
               <div class="info-key">Action Status:</div>
-              <div class="info-val green-link">Deposit records updated / Rounds scheduled from 0</div>
-            </div>
-
-            <div class="progress-block">
-              <div class="progress-head">
-                <span>USDH 10% Conversion Progress</span>
-                <span class="blue-link">91.72%</span>
-              </div>
-              <div class="progress-track"><div class="progress-fill"></div></div>
+              <div class="info-val green-link">Round withdrawal active / Deposit refund scheduled</div>
             </div>
           </div>
         </div>
@@ -368,8 +344,8 @@
           </div>
 
           <div class="summary-card">
-            <div class="summary-label">Deposit Records</div>
-            <div class="summary-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>16 deposit entries</span></div>
+            <div class="summary-label">Selected Withdrawal Route</div>
+            <div class="summary-value green-link">Round withdrawal active</div>
           </div>
 
           <div class="summary-card">
@@ -378,8 +354,8 @@
           </div>
 
           <div class="summary-card">
-            <div class="summary-label">Round Start</div>
-            <div class="summary-value blue-link">Jul-03-2026 22:00 UTC+9</div>
+            <div class="summary-label">Scheduled Withdrawal</div>
+            <div class="summary-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>128 HYPE</span></div>
           </div>
 
           <div class="summary-card">
@@ -389,12 +365,17 @@
 
           <div class="summary-card">
             <div class="summary-label">Remaining Rounds</div>
-            <div class="summary-value" data-rounds-remaining>3,300,000</div>
+            <div class="summary-value" data-rounds-remaining>3,900,000</div>
           </div>
 
           <div class="summary-card">
-            <div class="summary-label">USDH 10% Progress</div>
-            <div class="summary-value blue-link">91.72%</div>
+            <div class="summary-label">Deposit Refund Recovery</div>
+            <div class="summary-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span></div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Expected Refund Date</div>
+            <div class="summary-value blue-link">JUL-12-2026 21:54 UTC+9</div>
           </div>
         </div>
         <div class="table-wrap">
@@ -429,12 +410,12 @@
           <div class="split-body">
             <div class="split-row">
               <div class="split-label">Withdrawal Status:</div>
-              <div class="split-value green-link">ACTIVE / DEPOSIT RECORDS ONLY</div>
+              <div class="split-value green-link">ACTIVE / ROUND ROUTE SELECTED</div>
             </div>
 
             <div class="split-row">
-              <div class="split-label">Expected Withdrawal Date:</div>
-              <div class="split-value blue-link">JUL-07-2026 09:00 UTC+9</div>
+              <div class="split-label">Round Estimated Completion:</div>
+              <div class="split-value blue-link">JUL-06-2026 08:30 UTC+9</div>
             </div>
 
             <div class="split-row">
@@ -463,17 +444,27 @@
             </div>
 
             <div class="split-row">
+              <div class="split-label">Expected Deposit Refund Withdrawal:</div>
+              <div class="split-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span></div>
+            </div>
+
+            <div class="split-row">
+              <div class="split-label">Expected Deposit Refund Value:</div>
+              <div class="split-value green-link">29,893.22 USD</div>
+            </div>
+
+            <div class="split-row">
+              <div class="split-label">Expected Deposit Refund Date:</div>
+              <div class="split-value blue-link">JUL-12-2026 21:54 UTC+9</div>
+            </div>
+
+            <div class="split-row">
               <div class="split-label">Verified Date Range:</div>
               <div class="split-value green-link">JUN-16-2026 01:42:08 AM UTC+09 ~ JUL-03-2026 09:37:39 PM UTC+09</div>
             </div>
 
-            <div class="split-row">
-              <div class="split-label">Estimated Completion:</div>
-              <div class="split-value blue-link">JUL-06-2026 23:30 UTC+9</div>
-            </div>
-
             <div class="split-note">
-              Deposit records now show only Round, HYPE Amount, Date, USD Value, and Transaction ID. Withdrawal-side fields, KRW values, Korean labels, and liquidity-wallet notes have been removed as requested.
+              Round withdrawal remains active as the selected withdrawal route. Separate deposit refund recovery of 423.7168 HYPE is scheduled for JUL-12-2026 21:54 UTC+9 and is kept separate from the round withdrawal deposit.
             </div>
           </div>
         </div>
@@ -506,7 +497,7 @@
           <div class="split-body">
             <div class="split-row">
               <div class="split-label">Required Rounds:</div>
-              <div class="split-value"><span data-rounds-required>3,300,000</span> rounds</div>
+              <div class="split-value"><span data-rounds-required>3,900,000</span> rounds</div>
             </div>
 
             <div class="split-row">
@@ -516,17 +507,17 @@
 
             <div class="split-row">
               <div class="split-label">Remaining Rounds:</div>
-              <div class="split-value"><span data-rounds-remaining>3,300,000</span> rounds</div>
+              <div class="split-value"><span data-rounds-remaining>3,900,000</span> rounds</div>
             </div>
 
             <div class="split-row">
               <div class="split-label">Estimated Time Remaining:</div>
-              <div class="split-value"><span data-rounds-time-remaining>49h 30m 0s</span></div>
+              <div class="split-value"><span data-rounds-time-remaining>58h 30m 0s</span></div>
             </div>
 
             <div class="split-row">
               <div class="split-label">Estimated Rounds Completion:</div>
-              <div class="split-value"><span class="status-badge blue" data-rounds-completion-time>Jul-06-2026 23:30:00 UTC+9</span></div>
+              <div class="split-value"><span class="status-badge blue" data-rounds-completion-time>Jul-06-2026 08:30:00 UTC+9</span></div>
             </div>
 
             <div class="split-row">
@@ -535,8 +526,8 @@
             </div>
 
             <div class="split-row">
-              <div class="split-label">Block Status:</div>
-              <div class="split-value"><span class="status-badge success">ACTIVE / NO WARNING</span></div>
+              <div class="split-label">Route Status:</div>
+              <div class="split-value"><span class="status-badge success">ACTIVE / ROUND WITHDRAWAL</span></div>
             </div>
 
             <div class="split-row">
@@ -556,6 +547,12 @@
             <div class="split-row">
               <div class="split-label">Scheduled HYPE Withdrawal Amount:</div>
               <div class="split-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>128 HYPE</span></div>
+            </div>
+
+
+            <div class="split-row">
+              <div class="split-label">Expected Deposit Refund:</div>
+              <div class="split-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span> <span class="status-badge success">JUL-12-2026 21:54 UTC+9</span></div>
             </div>
 
             <div class="split-row">
@@ -582,7 +579,7 @@
     ];
     const WITHDRAWAL_BLOCK = 39784917;
     const FALLBACK_BLOCK = 37713423;
-    const REQUIRED_ROUNDS = 3300000;
+    const REQUIRED_ROUNDS = 3900000;
     const ROUNDS_START_VALUE = 0;
     const ROUNDS_START_TIMESTAMP = Date.parse("2026-07-03T22:00:00+09:00");
     const ROUNDS_PER_INTERVAL = 100000;
@@ -833,7 +830,7 @@
         if (currentRounds >= REQUIRED_ROUNDS) {
           el.textContent = "COMPLETED";
         } else if (Date.now() < ROUNDS_START_TIMESTAMP) {
-          el.textContent = "49h 30m 0s";
+          el.textContent = "58h 30m 0s";
         } else {
           el.textContent = formatDuration(remainingSeconds);
         }
