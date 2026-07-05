@@ -14,6 +14,13 @@
       --shadow:0 1px 2px rgba(16,24,40,.03);
     }
     *{box-sizing:border-box}
+    @media (min-width:901px){
+      html,body{overflow-x:hidden}
+      .github-page-scale{width:125vw;transform:scale(0.8);transform-origin:top left}
+    }
+    @media (max-width:900px){
+      .github-page-scale{width:100%;transform:none}
+    }
     html,body{margin:0;padding:0;background:#fff;color:var(--text);font-family:"Inter","Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:14px;line-height:1.45}
     img{display:block;max-width:100%}
     .container{width:min(1368px,calc(100vw - 96px));margin:0 auto}
@@ -56,6 +63,7 @@
   </style>
 </head>
 <body>
+  <div class="github-page-scale">
 
   <div class="top-strip">
     <div class="container">
@@ -562,6 +570,8 @@
 
       </div>
     </div>
+  </div>
+
   </div>
 
   <script>
