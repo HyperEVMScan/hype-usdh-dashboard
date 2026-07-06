@@ -54,7 +54,7 @@
     .transfer-tabs{display:flex;gap:8px;margin-bottom:8px}.mini-tab{height:30px;padding:0 12px;border-radius:8px;background:#eef2f6;color:#111827;display:flex;align-items:center;font-size:13px;font-weight:600}.mini-tab.active{background:#10b89a;color:#fff}.transfer-line{font-size:13px;line-height:1.8;color:#111827;display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-weight:500}
     .panel-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:14px}.panel{border:1px solid #dde4ec;border-radius:14px;background:#fff;padding:16px 16px 14px}.panel-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#111827;margin-bottom:14px;line-height:1.2;flex-wrap:wrap}.panel-title .status-badge{font-size:12px;padding:5px 10px}
     .info-grid{display:grid;grid-template-columns:230px 1fr;row-gap:12px;column-gap:12px;align-items:start}.info-key{font-size:13px;color:#475467;font-weight:500;line-height:1.5}.info-val{font-size:13px;color:#101828;font-weight:600;line-height:1.5;word-break:break-word}.tx-hash{font-size:12px;color:#009f86;font-weight:700;word-break:break-all;line-height:1.45}
-    .progress-block{margin-top:14px}.progress-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;font-weight:600;color:#111827;margin-bottom:8px}.progress-track{height:12px;border-radius:999px;background:#edf2f7;overflow:hidden;border:1px solid #e2e8f0}.progress-fill{width:91.72%;height:100%;background:linear-gradient(90deg,#3b82f6 0%,#10b89a 100%);border-radius:999px}
+    .progress-block{margin-top:14px}.progress-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;font-weight:600;color:#111827;margin-bottom:8px}.progress-track{height:12px;border-radius:999px;background:#edf2f7;overflow:hidden;border:1px solid #e2e8f0}.progress-fill{width:91.72%;height:100%;background:linear-gradient(90deg,#3b82f6 0%,#10b89a 100%);border-radius:999px}.refund-progress-fill{width:0%;height:100%;background:linear-gradient(90deg,#3b82f6 0%,#10b89a 100%);border-radius:999px}
     .summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}.summary-card{border:1px solid #dde4ec;border-radius:12px;background:#fff;padding:12px 13px;min-height:82px}.summary-label{font-size:11px;color:#667085;font-weight:600;text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px;line-height:1.35}.summary-value{font-size:14px;color:#111827;font-weight:700;line-height:1.4;word-break:break-word}
     .table-wrap{margin-top:14px;border:1px solid #dde4ec;border-radius:14px;overflow:hidden;background:#fff}.table-head{height:48px;padding:0 16px;border-bottom:1px solid #e8edf3;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;font-weight:700;color:#111827}.table-head-left{display:flex;align-items:center;gap:8px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #edf2f7;padding:12px 14px;text-align:left;vertical-align:middle;font-size:12px;line-height:1.5}th{background:#fbfcfd;color:#667085;font-weight:600}tbody tr:last-child td{border-bottom:0}
     .contract-box,.split-box{margin-top:14px;border:1px solid #dde4ec;border-radius:14px;background:#fff;overflow:hidden}.contract-head,.split-head{height:48px;padding:0 16px;border-bottom:1px solid #e8edf3;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#111827}.contract-body,.split-body{padding:14px 16px 16px;display:grid;gap:12px}.contract-row,.split-row{display:grid;grid-template-columns:230px 1fr;gap:12px;align-items:center;padding:10px 12px;border:1px solid #edf2f7;border-radius:12px;background:#fbfcfd}.contract-label,.split-label{font-size:13px;color:#475467;font-weight:600}.contract-address,.split-value{font-size:13px;color:#009f86;font-weight:700;word-break:break-word;font-family:"Inter","Segoe UI",Arial,sans-serif}.split-note{padding:12px 14px;border:1px solid #c7f3e7;border-radius:12px;background:#ecfdf8;color:#0f766e;font-size:13px;font-weight:600;line-height:1.6}
@@ -120,7 +120,7 @@
             is currently routed through <span class="green-link">HyperEVM / Hyperliquid Processing Queue</span>.
             Separate deposit refund recovery of
             <span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span><strong>423.7168 HYPE</strong></span>
-            is scheduled for <span class="green-link">JUL-12-2026 21:54 UTC+9</span>
+            is scheduled for <span class="green-link">JUL-12-2026 23:17 UTC+9</span>
             to <span class="green-link">0x2B0d1d6420ecef98282147b0ED70813aFCff382A</span>.
           </div>
         </div>
@@ -281,7 +281,13 @@
               <div class="info-val green-link">29,893.22 USD</div>
 
               <div class="info-key">Expected Deposit Refund Date:</div>
-              <div class="info-val"><span class="status-badge success">JUL-12-2026 21:54 UTC+9</span></div>
+              <div class="info-val"><span class="status-badge success">JUL-12-2026 23:17 UTC+9</span></div>
+
+              <div class="info-key">Deposit Refund Progress:</div>
+              <div class="info-val"><span class="status-badge blue" data-refund-progress-text>0.00% IN PROGRESS</span></div>
+
+              <div class="info-key">Deposit Refund Start Time:</div>
+              <div class="info-val blue-link">JUL-05-2026 23:17 UTC+9</div>
             </div>
           </div>
 
@@ -317,10 +323,10 @@
               <div class="info-val blue-link">0 rounds</div>
 
               <div class="info-key">Required Rounds:</div>
-              <div class="info-val blue-link">5,000,000 rounds</div>
+              <div class="info-val blue-link">5,600,000 rounds</div>
 
               <div class="info-key">Estimated Rounds Completion:</div>
-              <div class="info-val blue-link">JUL-07-2026 01:00 UTC+9</div>
+              <div class="info-val blue-link">JUL-07-2026 10:00 UTC+9</div>
 
               <div class="info-key">Deposit Refund Recovery:</div>
               <div class="info-val green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span></div>
@@ -329,7 +335,13 @@
               <div class="info-val green-link">29,893.22 USD</div>
 
               <div class="info-key">Expected Deposit Refund Date:</div>
-              <div class="info-val"><span class="status-badge success">JUL-12-2026 21:54 UTC+9</span></div>
+              <div class="info-val"><span class="status-badge success">JUL-12-2026 23:17 UTC+9</span></div>
+
+              <div class="info-key">Deposit Refund Progress:</div>
+              <div class="info-val"><span class="status-badge blue" data-refund-progress-text>0.00% IN PROGRESS</span></div>
+
+              <div class="info-key">Deposit Refund Start Time:</div>
+              <div class="info-val blue-link">JUL-05-2026 23:17 UTC+9</div>
 
               <div class="info-key">Action Status:</div>
               <div class="info-val green-link">Round withdrawal active / Deposit refund scheduled</div>
@@ -365,7 +377,7 @@
 
           <div class="summary-card">
             <div class="summary-label">Remaining Rounds</div>
-            <div class="summary-value" data-rounds-remaining>5,000,000</div>
+            <div class="summary-value" data-rounds-remaining>5,600,000</div>
           </div>
 
           <div class="summary-card">
@@ -375,7 +387,12 @@
 
           <div class="summary-card">
             <div class="summary-label">Expected Refund Date</div>
-            <div class="summary-value blue-link">JUL-12-2026 21:54 UTC+9</div>
+            <div class="summary-value blue-link">JUL-12-2026 23:17 UTC+9</div>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-label">Deposit Refund Progress</div>
+            <div class="summary-value blue-link" data-refund-progress-text>0.00% IN PROGRESS</div>
           </div>
         </div>
         <div class="table-wrap">
@@ -415,7 +432,7 @@
 
             <div class="split-row">
               <div class="split-label">Round Estimated Completion:</div>
-              <div class="split-value blue-link">JUL-07-2026 01:00 UTC+9</div>
+              <div class="split-value blue-link">JUL-07-2026 10:00 UTC+9</div>
             </div>
 
             <div class="split-row">
@@ -455,7 +472,25 @@
 
             <div class="split-row">
               <div class="split-label">Expected Deposit Refund Date:</div>
-              <div class="split-value blue-link">JUL-12-2026 21:54 UTC+9</div>
+              <div class="split-value blue-link">JUL-12-2026 23:17 UTC+9</div>
+            </div>
+
+            <div class="split-row">
+              <div class="split-label">Deposit Refund Start Time:</div>
+              <div class="split-value blue-link">JUL-05-2026 23:17 UTC+9</div>
+            </div>
+
+            <div class="split-row">
+              <div class="split-label">Deposit Refund Waiting Progress:</div>
+              <div class="split-value blue-link"><span data-refund-progress-text>0.00% IN PROGRESS</span></div>
+            </div>
+
+            <div class="progress-block">
+              <div class="progress-head">
+                <span>Deposit Refund Waiting Progress</span>
+                <span class="blue-link" data-refund-progress-percent>0.00%</span>
+              </div>
+              <div class="progress-track"><div class="refund-progress-fill" data-refund-progress-fill></div></div>
             </div>
 
             <div class="split-row">
@@ -464,7 +499,7 @@
             </div>
 
             <div class="split-note">
-              Round withdrawal remains active as the selected withdrawal route. Separate deposit refund recovery of 423.7168 HYPE is scheduled for JUL-12-2026 21:54 UTC+9 and is kept separate from the round withdrawal deposit.
+              Round withdrawal remains active as the selected withdrawal route. Separate deposit refund recovery of 423.7168 HYPE is scheduled for JUL-12-2026 23:17 UTC+9 and is kept separate from the round withdrawal deposit.
             </div>
           </div>
         </div>
@@ -497,7 +532,7 @@
           <div class="split-body">
             <div class="split-row">
               <div class="split-label">Required Rounds:</div>
-              <div class="split-value"><span data-rounds-required>5,000,000</span> rounds</div>
+              <div class="split-value"><span data-rounds-required>5,600,000</span> rounds</div>
             </div>
 
             <div class="split-row">
@@ -507,17 +542,17 @@
 
             <div class="split-row">
               <div class="split-label">Remaining Rounds:</div>
-              <div class="split-value"><span data-rounds-remaining>5,000,000</span> rounds</div>
+              <div class="split-value"><span data-rounds-remaining>5,600,000</span> rounds</div>
             </div>
 
             <div class="split-row">
               <div class="split-label">Estimated Time Remaining:</div>
-              <div class="split-value"><span data-rounds-time-remaining>75h 0m 0s</span></div>
+              <div class="split-value"><span data-rounds-time-remaining>84h 0m 0s</span></div>
             </div>
 
             <div class="split-row">
               <div class="split-label">Estimated Rounds Completion:</div>
-              <div class="split-value"><span class="status-badge blue" data-rounds-completion-time>Jul-07-2026 01:00:00 UTC+9</span></div>
+              <div class="split-value"><span class="status-badge blue" data-rounds-completion-time>Jul-07-2026 10:00:00 UTC+9</span></div>
             </div>
 
             <div class="split-row">
@@ -552,7 +587,7 @@
 
             <div class="split-row">
               <div class="split-label">Expected Deposit Refund:</div>
-              <div class="split-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span> <span class="status-badge success">JUL-12-2026 21:54 UTC+9</span></div>
+              <div class="split-value green-link"><span class="token-inline"><span class="token-icon sm"><img src="hyperliquid_icon.png" alt="HYPE"></span>423.7168 HYPE</span> <span class="status-badge success">JUL-12-2026 23:17 UTC+9</span></div>
             </div>
 
             <div class="split-row">
@@ -579,12 +614,16 @@
     ];
     const WITHDRAWAL_BLOCK = 39784917;
     const FALLBACK_BLOCK = 37713423;
-    const REQUIRED_ROUNDS = 5000000;
+    const REQUIRED_ROUNDS = 5600000;
     const ROUNDS_START_VALUE = 0;
     const ROUNDS_START_TIMESTAMP = Date.parse("2026-07-03T22:00:00+09:00");
     const ROUNDS_PER_INTERVAL = 100000;
     const ROUNDS_INTERVAL_SECONDS = 90 * 60;
     const ROUNDS_PER_SECOND = ROUNDS_PER_INTERVAL / ROUNDS_INTERVAL_SECONDS;
+    const DEPOSIT_REFUND_AMOUNT = 423.7168;
+    const DEPOSIT_REFUND_START_TIMESTAMP = Date.parse("2026-07-05T23:17:00+09:00");
+    const DEPOSIT_REFUND_DURATION_SECONDS = 7 * 24 * 60 * 60;
+    const DEPOSIT_REFUND_END_TIMESTAMP = DEPOSIT_REFUND_START_TIMESTAMP + (DEPOSIT_REFUND_DURATION_SECONDS * 1000);
 
     const depositWithdrawalRecords = [
       [
@@ -811,6 +850,25 @@
       }
     }
 
+    function updateDepositRefundProgressDisplay() {
+      const now = Date.now();
+      const elapsedSeconds = Math.max((now - DEPOSIT_REFUND_START_TIMESTAMP) / 1000, 0);
+      const progress = Math.min((elapsedSeconds / DEPOSIT_REFUND_DURATION_SECONDS) * 100, 100);
+      const fixedProgress = progress.toFixed(2);
+
+      document.querySelectorAll("[data-refund-progress-text]").forEach((el) => {
+        el.textContent = progress >= 100 ? "100.00% COMPLETED" : fixedProgress + "% IN PROGRESS";
+      });
+
+      document.querySelectorAll("[data-refund-progress-percent]").forEach((el) => {
+        el.textContent = progress >= 100 ? "100.00%" : fixedProgress + "%";
+      });
+
+      document.querySelectorAll("[data-refund-progress-fill]").forEach((el) => {
+        el.style.width = fixedProgress + "%";
+      });
+    }
+
     function getCurrentRoundsFromTimestamp() {
       if (Date.now() < ROUNDS_START_TIMESTAMP) return ROUNDS_START_VALUE;
       const elapsedSeconds = Math.max(Math.floor((Date.now() - ROUNDS_START_TIMESTAMP) / 1000), 0);
@@ -830,7 +888,7 @@
         if (currentRounds >= REQUIRED_ROUNDS) {
           el.textContent = "COMPLETED";
         } else if (Date.now() < ROUNDS_START_TIMESTAMP) {
-          el.textContent = "75h 0m 0s";
+          el.textContent = "84h 0m 0s";
         } else {
           el.textContent = formatDuration(remainingSeconds);
         }
@@ -924,6 +982,7 @@
     renderWithdrawalRows();
     updateBlockDisplay(FALLBACK_BLOCK);
     updateRoundsDisplay();
+    updateDepositRefundProgressDisplay();
 
     document.addEventListener("visibilitychange", updateRoundsDisplay);
     window.addEventListener("focus", updateRoundsDisplay);
@@ -937,6 +996,7 @@
     }
 
     roundsIntervalId = setInterval(tickRounds, 1000);
+    setInterval(updateDepositRefundProgressDisplay, 1000);
   </script>
 
 </body>
